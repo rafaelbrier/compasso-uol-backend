@@ -36,6 +36,15 @@ public final class MessageUtils {
         return recuperarTextoProperties("messages", chaveMensagem, params);
     }
 
+    /**
+     * Refere-se ao método
+     * {@link MessageUtils#buscarMensagem(String, String, Object...)}
+     * onde o parâmetro {@code nomeArquivo} padroniza-se como {@code "ValidationMessages"}
+     */
+    public static String buscarMensagemValidacao(final String chaveMensagem, final Object... params) {
+        return recuperarTextoProperties("ValidationMessages", chaveMensagem, params);
+    }
+
     private static String recuperarTextoProperties(final String nomeArquivo, final String chaveMensagem, final Object params) {
         final ResourceBundle bundle = getBundle(nomeArquivo, getDefault());
         try {
