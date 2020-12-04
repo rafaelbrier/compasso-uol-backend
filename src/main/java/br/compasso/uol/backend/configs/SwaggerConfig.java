@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -40,14 +41,20 @@ public class SwaggerConfig {
     private String licenseUrl;
 
     private final Contact contact = new Contact(contactName, contactUrl, contactEmail);
-    private final ApiInfo apiInfo = new ApiInfo(title, description, version, termsOfServiceUrl, contact, license, licenseUrl);
+    private final ApiInfo apiInfo = new ApiInfo(title, description, version, termsOfServiceUrl, contact, license, licenseUrl, Collections.emptyList());
     private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<>(Collections.singletonList("application/json"));
 
     @Bean
     public Docket api() {
+        String packageName = this.getClass().getPackage().getName();
+        String rootPackage = packageName.substring(0, packageName.lastIndexOf('.'));
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo)
                 .produces(DEFAULT_PRODUCES_AND_CONSUMES)
-                .consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+                .consumes(DEFAULT_PRODUCES_AND_CONSUMES)
+                .useDefaultResponseMessages(false)
+                .apiInfo(apiInfo)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(rootPackage))
+                .build();
     }
 }
