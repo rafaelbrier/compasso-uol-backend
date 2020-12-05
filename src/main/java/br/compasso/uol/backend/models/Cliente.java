@@ -11,7 +11,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cliente_id", nullable = false)
-    private long clienteId;
+    private long id;
 
     @Column(name = "nome_completo", nullable = false)
     private String nomeCompleto;
@@ -23,16 +23,20 @@ public class Cliente {
     @Column(name = "idade", nullable = false)
     private int idade;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cidadeId")
     private Cidade cidade;
 
-    public long getClienteId() {
-        return clienteId;
+    public static String[] relations() {
+        return new String[]{"cidade"};
     }
 
-    public void setClienteId(long clienteId) {
-        this.clienteId = clienteId;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long clienteId) {
+        this.id = clienteId;
     }
 
     public String getNomeCompleto() {

@@ -77,8 +77,8 @@ public final class Response<T> {
      * Gera um objeto {@link Response} com o corpo informado e status {@link HttpStatus#NO_CONTENT}
      * Veja também {@link Response#of(Object, int, String)}
      */
-    public static <T> Response<T> deleted(@Nullable T body) {
-        return of(body, HttpStatus.NO_CONTENT.value(), MessageUtils.buscarMensagem("response.code204"));
+    public static <T> Response<T> deleted() {
+        return of(null, HttpStatus.NO_CONTENT.value(), MessageUtils.buscarMensagem("response.code204"));
     }
 
     /**

@@ -2,13 +2,13 @@ package br.compasso.uol.backend.dtos;
 
 public class CidadeRetornoDto extends CidadeCreateRequest {
 
-    private long cidadeId;
+    private long id;
 
-    public long getCidadeId() {
-        return cidadeId;
+    public long getId() {
+        return id;
     }
 
-    public void setCidadeId(long cidadeId) {
-        this.cidadeId = cidadeId;
+    public void setId(long id) {
+        this.id = id;
     }
 }

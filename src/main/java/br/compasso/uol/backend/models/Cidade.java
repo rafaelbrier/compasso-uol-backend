@@ -10,7 +10,7 @@ public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cidade_id", nullable = false)
-    private long cidadeId;
+    private long id;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -19,12 +19,12 @@ public class Cidade {
     @Enumerated(EnumType.STRING)
     private EstadoEnum estado;
 
-    public long getCidadeId() {
-        return cidadeId;
+    public long getId() {
+        return id;
     }
 
-    public void setCidadeId(long cidadeId) {
-        this.cidadeId = cidadeId;
+    public void setId(long cidadeId) {
+        this.id = cidadeId;
     }
 
     public String getNome() {

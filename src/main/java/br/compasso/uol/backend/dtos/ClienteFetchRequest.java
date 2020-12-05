@@ -18,4 +18,5 @@ public class ClienteFetchRequest {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
 }

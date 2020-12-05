@@ -1,5 +1,8 @@
 # Desafio Compasso UOL Backend
 
+Prezados, busquei fazer o sistema o mais completo e amplo possível.
+Os testes unitários estão com coverage de 100%.
+
 ## Getting Started
 
 ### Reference Documentation

@@ -42,4 +42,18 @@ public class ClienteEscritaResource {
         Cliente cliente = clienteService.salvarCliente(clienteCreateRequest);
         return Response.created(modelMapper.map(cliente, ClienteRetornoDto.class));
     }
+
+    @ApiOperation(
+            value = "Deleta Cliente pelo seu identificador.",
+            notes = "Recurso responsável por Deletar um Cliente pelo seu identificador."
+    )
+    @ApiResponses(
+            value = {@ApiResponse(code = 204, message = "Cliente deletado com sucesso."),
+                    @ApiResponse(code = 404, message = "Recursos necessários inválidos ou não encontrados.")})
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{clienteId}")
+    public Response<Void> deletarCliente(@PathVariable long clienteId) {
+        clienteService.deletarCliente(clienteId);
+        return Response.deleted();
+    }
 }
