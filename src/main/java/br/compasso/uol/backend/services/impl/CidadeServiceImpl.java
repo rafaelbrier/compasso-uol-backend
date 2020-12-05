@@ -2,13 +2,13 @@ package br.compasso.uol.backend.services.impl;
 
 import br.compasso.uol.backend.dtos.CidadeCreateRequest;
 import br.compasso.uol.backend.dtos.CidadeFetchRequest;
-import br.compasso.uol.backend.dtos.CidadeRetornoDto;
+import br.compasso.uol.backend.exceptions.NotFoundException;
 import br.compasso.uol.backend.models.Cidade;
 import br.compasso.uol.backend.repositories.CidadeRepository;
 import br.compasso.uol.backend.repositories.specifications.CidadeSpecification;
 import br.compasso.uol.backend.services.CidadeService;
+import br.compasso.uol.backend.utils.MessageUtils;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -30,14 +30,20 @@ public class CidadeServiceImpl implements CidadeService {
     }
 
     @Override
-    public List<CidadeRetornoDto> buscarCidades(CidadeFetchRequest cidadeFetchRequest) {
-        CidadeSpecification cidadeSpecification = new CidadeSpecification(cidadeFetchRequest);
-        return modelMapper.map(cidadeRepository.findAll(cidadeSpecification), new TypeToken<List<CidadeRetornoDto>>() {}.getType());
+    public Cidade buscarPorId(long cidadeId) throws NotFoundException {
+        return cidadeRepository.findById(cidadeId)
+                .orElseThrow(() -> new NotFoundException(MessageUtils.buscarMensagem("cidade.nao.encontrada")));
     }
 
     @Override
-    public CidadeRetornoDto salvarCidade(@Valid CidadeCreateRequest cidadeCreateRequest) {
+    public List<Cidade> buscarCidades(CidadeFetchRequest cidadeFetchRequest) {
+        CidadeSpecification cidadeSpecification = new CidadeSpecification(cidadeFetchRequest);
+        return cidadeRepository.findAll(cidadeSpecification);
+    }
+
+    @Override
+    public Cidade salvarCidade(@Valid CidadeCreateRequest cidadeCreateRequest) {
         Cidade cidade = modelMapper.map(cidadeCreateRequest, Cidade.class);
-        return modelMapper.map(cidadeRepository.save(cidade), CidadeRetornoDto.class);
+        return cidadeRepository.save(cidade);
     }
 }
