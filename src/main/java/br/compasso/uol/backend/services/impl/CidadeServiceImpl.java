@@ -30,9 +30,9 @@ public class CidadeServiceImpl implements CidadeService {
     }
 
     @Override
-    public Cidade buscarPorId(long cidadeId) throws NotFoundException {
+    public Cidade buscarPorId(long cidadeId) {
         return cidadeRepository.findById(cidadeId)
-                .orElseThrow(() -> new NotFoundException(MessageUtils.buscarMensagem("cidade.nao.encontrada")));
+                .orElseThrow(() -> new NotFoundException(MessageUtils.buscarMensagem("cidade.nao.encontrada"), cidadeId));
     }
 
     @Override

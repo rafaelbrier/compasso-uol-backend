@@ -8,7 +8,7 @@ import br.compasso.uol.backend.models.Cidade;
 import javax.validation.Valid;
 import java.util.List;
 
-public interface ClienteService {
+public interface CidadeService {
 
     /**
      * Busca uma cidade pelo seu identificador {@code cidadeId}
@@ -17,7 +17,7 @@ public interface ClienteService {
      * @return a {@link Cidade} encontrada caso exista
      * @throws NotFoundException caso não exista uma {@link Cidade} com o id buscado
      */
-    Cidade buscarPorId(long cidadeId) throws NotFoundException;
+    Cidade buscarPorId(long cidadeId);
 
     /**
      * Busca uma lista de cidade de acordo com os parâmetros do objeto {@link CidadeFetchRequest}

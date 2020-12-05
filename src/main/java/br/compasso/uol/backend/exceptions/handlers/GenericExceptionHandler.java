@@ -2,6 +2,8 @@ package br.compasso.uol.backend.exceptions.handlers;
 
 import br.compasso.uol.backend.dtos.Error;
 import br.compasso.uol.backend.dtos.Response;
+import br.compasso.uol.backend.exceptions.NotFoundException;
+import br.compasso.uol.backend.exceptions.ValidationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +29,16 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotReadable(final HttpMessageNotReadableException ex, final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
         Response<List<Error>> body = Response.badRequest(Collections.singletonList(new Error(ex.getLocalizedMessage(), null)));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    protected Response<List<Error>> handleNotFoundException(final NotFoundException ex) {
+        return Response.notFound(ex.getErrors());
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    protected Response<List<Error>> handleValidationException(final ValidationException ex) {
+        return Response.badRequest(ex.getErrors());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
