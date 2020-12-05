@@ -1,6 +1,8 @@
 package br.compasso.uol.backend.services;
 
-import br.compasso.uol.backend.dtos.*;
+import br.compasso.uol.backend.dtos.ClienteCreateRequest;
+import br.compasso.uol.backend.dtos.ClienteFetchRequest;
+import br.compasso.uol.backend.models.Cliente;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -11,15 +13,15 @@ public interface ClienteService {
      * Busca uma lista de clientes de acordo com os parâmetros do objeto {@link ClienteFetchRequest}
      *
      * @param clienteFetchRequest o objeto {@link ClienteFetchRequest} que contém os parâmetros de busca
-     * @return uma lista de {@link CidadeRetornoDto}
+     * @return uma lista de {@link Cliente}
      */
-    List<ClienteRetornoDto> buscarClientes(ClienteFetchRequest clienteFetchRequest);
+    List<Cliente> buscarClientes(ClienteFetchRequest clienteFetchRequest);
 
     /**
      * Insere/Cria um novo Cliente.
      *
      * @param clienteCreateRequest o objeto de requisição para criação de um novo cliente
-     * @return o objeto {@link ClienteRetornoDto} com as informações de retorno
+     * @return o objeto {@link Cliente} salvo
      */
-    ClienteRetornoDto salvarCidade(@Valid ClienteCreateRequest clienteCreateRequest);
+    Cliente salvarCliente(@Valid ClienteCreateRequest clienteCreateRequest);
 }

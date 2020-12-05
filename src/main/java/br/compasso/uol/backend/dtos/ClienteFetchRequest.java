@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 @ApiModel(value = "DTO para filtragem de busca de Clientes.")
 public class ClienteFetchRequest {
 
-    @ApiModelProperty(notes = "Filtra clientes com o Nome igual.")
+    @ApiModelProperty(notes = "Filtra clientes que CONTÉM uma parte do Nome Completo [case insensitive].")
     private String nome;
 
     @Nullable

@@ -22,10 +22,14 @@ public class ClienteSpecification implements Specification<Cliente> {
     public Predicate toPredicate(Root<Cliente> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         // Condição de Nome Igual
         if (Objects.nonNull(clienteFetchRequest.getNome())) {
-            // Uma alternativa a String "nome" para maior automatização da busca do atributos e imunidade a renomeação de parâmetros
+            // Uma alternativa a String "nomeCompleto" para maior automatização da busca do atributos e imunidade a renomeação de parâmetros
             // é gerar as classes de MetaDados das entidades
-            return builder.equal(root.get("nome"), clienteFetchRequest.getNome());
+            return builder.like(builder.lower(root.get("nomeCompleto")), likeTwoWays(clienteFetchRequest.getNome().toLowerCase()));
         }
         return null;
+    }
+
+    private static String likeTwoWays(String str) {
+        return "%" + str + "%";
     }
 }
