@@ -8,7 +8,7 @@ import static java.util.Locale.getDefault;
 import static java.util.ResourceBundle.getBundle;
 
 /**
- * Classe utilitária responsável pela busca, manipulação das mensagens do sistema
+ * Classe utilitária responsável pela busca e manipulação das mensagens do sistema
  */
 public final class MessageUtils {
 
