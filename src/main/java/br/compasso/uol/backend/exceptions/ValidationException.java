@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 /**
- * Exceção de Validação
+ * Exceção de Validação. Deve ser lançada quando alguma regra de negócio falha.
  */
 @ResponseStatus(value= HttpStatus.BAD_REQUEST)
 public class ValidationException extends GenericException {

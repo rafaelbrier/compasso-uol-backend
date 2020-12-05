@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 
 /**
- * Exceção de NotFound
+ * Exceção de NotFound. Deve ser lançada quando algum recurso buscado e obrigatório para a operação não foi encontrado.
  */
 @ResponseStatus(value= HttpStatus.NOT_FOUND)
 public class NotFoundException extends GenericException {

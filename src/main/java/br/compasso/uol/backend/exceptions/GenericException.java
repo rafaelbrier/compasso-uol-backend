@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Exceção Genérica
+ * Exceção Genérica. Deve ser lançada quando algum erro desconhecido interrompeu a operação
  */
 public class GenericException extends RuntimeException {
 
-    private final List<Error> errors;
+    private final transient List<Error> errors;
 
     public GenericException(final String message, final Throwable cause) {
         super(message, cause);
