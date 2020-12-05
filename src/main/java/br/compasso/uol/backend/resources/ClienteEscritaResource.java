@@ -1,6 +1,7 @@
 package br.compasso.uol.backend.resources;
 
 import br.compasso.uol.backend.dtos.ClienteCreateRequest;
+import br.compasso.uol.backend.dtos.ClienteNameChangeRequest;
 import br.compasso.uol.backend.dtos.ClienteRetornoDto;
 import br.compasso.uol.backend.dtos.Response;
 import br.compasso.uol.backend.models.Cliente;
@@ -41,6 +42,20 @@ public class ClienteEscritaResource {
     public Response<ClienteRetornoDto> criarCliente(@RequestBody ClienteCreateRequest clienteCreateRequest) {
         Cliente cliente = clienteService.salvarCliente(clienteCreateRequest);
         return Response.created(modelMapper.map(cliente, ClienteRetornoDto.class));
+    }
+
+    @ApiOperation(
+            value = "Altera o Nome Completo do Cliente.",
+            notes = "Recurso responsável por Alterar o Nome Completo do Cliente."
+    )
+    @ApiResponses(
+            value = {@ApiResponse(code = 200, message = "Nome Completo do Cliente alterado com sucesso."),
+                    @ApiResponse(code = 404, message = "Recursos necessários inválidos ou não encontrados.")})
+    @PatchMapping("/{clienteId}/nome-completo")
+    public Response<String> alterarNomeCliente(@PathVariable long clienteId,
+                                               @RequestBody ClienteNameChangeRequest clienteNameChangeRequest) {
+        Cliente cliente = clienteService.alterarNomeCliente(clienteId, clienteNameChangeRequest);
+        return Response.ok(cliente.getNomeCompleto());
     }
 
     @ApiOperation(

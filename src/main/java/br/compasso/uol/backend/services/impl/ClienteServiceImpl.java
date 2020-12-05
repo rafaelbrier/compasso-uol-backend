@@ -2,6 +2,7 @@ package br.compasso.uol.backend.services.impl;
 
 import br.compasso.uol.backend.dtos.ClienteCreateRequest;
 import br.compasso.uol.backend.dtos.ClienteFetchRequest;
+import br.compasso.uol.backend.dtos.ClienteNameChangeRequest;
 import br.compasso.uol.backend.exceptions.GenericException;
 import br.compasso.uol.backend.exceptions.NotFoundException;
 import br.compasso.uol.backend.models.Cidade;
@@ -54,6 +55,13 @@ public class ClienteServiceImpl implements ClienteService {
         Cidade cidade = cidadeService.buscarPorId(clienteCreateRequest.getCidadeId());
         Cliente cliente = modelMapper.map(clienteCreateRequest, Cliente.class);
         cliente.setCidade(cidade);
+        return clienteRepository.save(cliente);
+    }
+
+    @Override
+    public Cliente alterarNomeCliente(long clienteId, @Valid ClienteNameChangeRequest clienteNameChangeRequest) {
+        Cliente cliente = buscarPorId(clienteId);
+        cliente.setNomeCompleto(clienteNameChangeRequest.getNomeCompleto());
         return clienteRepository.save(cliente);
     }
 
