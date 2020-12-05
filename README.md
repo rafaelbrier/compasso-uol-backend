@@ -1,7 +1,9 @@
 # Desafio Compasso UOL Backend
 
 Prezados, busquei fazer o sistema o mais completo e amplo possível.
-Os testes unitários estão com coverage de 100%.
+Swagger detalhado.
+
+Postman collection: https://www.getpostman.com/collections/61cf10364def1647a3b7
 
 ## Getting Started
 

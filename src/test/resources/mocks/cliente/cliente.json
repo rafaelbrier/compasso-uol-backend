@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "nomeCompleto": "BATATA",
+  "sexo": "MASCULINO",
+  "dataNascimento": "2020-05-31",
+  "idade": 15,
+  "cidade": {
+    "id": 1,
+    "nome": "JUIZ DE FORA",
+    "estado": "MG"
+  }
+}
